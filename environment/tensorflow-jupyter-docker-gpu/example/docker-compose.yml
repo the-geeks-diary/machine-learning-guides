@@ -5,9 +5,9 @@ services:
     image: thegeeksdiary/tensorflow-jupyter-gpu:latest
     restart: unless-stopped
     # uncomment the below to map the notebooks from your machine inside the docker container - please make sure to change the path applicable to you.
-    # volumes:
-    #   - ./notebooks:/environment/notebooks
-    #   - ./data:/environment/data
+    volumes:
+      - ./notebooks:/environment/notebooks
+      - ./data:/environment/data
     deploy:
       resources:
         reservations:
