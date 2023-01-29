@@ -1,6 +1,7 @@
 FROM nvcr.io/nvidia/tensorflow:22.12-tf2-py3 as baseImage
 WORKDIR /environment
 COPY requirements.txt /environment/
+COPY test-env.ipynb /environment/
 RUN pip install -U -r /environment/requirements.txt
 EXPOSE 8888
 ENTRYPOINT ["jupyter", "notebook", "--no-browser","--ip=0.0.0.0","--NotebookApp.token=''","--NotebookApp.password=''"]
