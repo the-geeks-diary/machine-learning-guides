@@ -1,6 +1,7 @@
 jupyter
 scikit-learn
 scipy
+seaborn
 pandas
 polars
 pandas-datareader
