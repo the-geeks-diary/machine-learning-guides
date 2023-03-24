@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   tensorflow:
-    container_name: 01-basics
+    container_name: 02-image-classification
     image: thegeeksdiary/tensorflow-jupyter-gpu:latest
     restart: unless-stopped
     volumes:
