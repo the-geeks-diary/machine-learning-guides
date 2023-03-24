@@ -24,3 +24,5 @@ gdown
 contractions
 wordcloud
 scikit-learn-intelex
+skimage
+opencv-contrib-python-headless
