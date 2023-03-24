@@ -1,6 +1,6 @@
 # Introduction to Deep Learning with TensorFlow
 
-This is the code accompanying the [article](https://thegeeksdiary.com/2023/03/23/introduction-to-deep-learning-with-tensorflow-deep-learning-1/) on my blog [thegeeksdiary](https://thegeeksdiary.com).
+This is the code accompanying the [article]() on my blog [thegeeksdiary](https://thegeeksdiary.com).
 
 ## Environment Setup
 ---
