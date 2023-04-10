@@ -1,0 +1,26 @@
+version: '3.0'
+services:
+  tensorflow:
+    container_name: image-seg-pytorch-gpu
+    image: thegeeksdiary/mask2former-jupyter-gpu:latest
+    restart: unless-stopped
+    # uncomment the below to map the notebooks from your machine inside the docker container - please make sure to change the path applicable to you.
+    volumes:
+      - ./notebooks:/environment/notebooks
+      - ./data:/environment/data
+      - ./Mask2Former:/environment/notebooks/Mask2Former
+      - ./requirements.txt:/environment/requirements.txt
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [gpu]
+    ports:
+      - '8888:8888'
+    networks:
+      - jupyter
+networks:
+  jupyter:
+    driver: bridge
