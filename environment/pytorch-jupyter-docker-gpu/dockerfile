@@ -1,5 +1,9 @@
-FROM nvcr.io/nvidia/tensorflow:22.12-tf2-py3 as baseImage
+FROM nvcr.io/nvidia/pytorch:23.03-py3 as baseImage
+
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="${PATH}:/opt/hpcx/ompi/bin"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/hpcx/ompi/lib"
+
 RUN apt-get update && apt-get install -y \
     wget \
     build-essential \
