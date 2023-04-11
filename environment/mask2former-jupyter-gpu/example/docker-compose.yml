@@ -1,8 +1,8 @@
 version: '3.0'
 services:
-  pytorch:
-    container_name: pytorch-gpu
-    image: thegeeksdiary/pytorch-jupyter-gpu:latest
+  mask2former:
+    container_name: mask2former-gpu
+    image: thegeeksdiary/mask2former-jupyter-gpu:latest
     restart: unless-stopped
     # uncomment the below to map the notebooks from your machine inside the docker container - please make sure to change the path applicable to you.
     volumes:
@@ -16,7 +16,7 @@ services:
             device_ids: ['0']
             capabilities: [gpu]
     ports:
-      - '8888:8888'
+      - '8889:8888'
     networks:
       - jupyter
 networks:

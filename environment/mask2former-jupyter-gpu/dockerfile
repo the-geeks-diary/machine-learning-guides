@@ -1,0 +1,20 @@
+FROM thegeeksdiary/pytorch-jupyter-gpu:latest as baseImage
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV FORCE_CUDA=1
+ENV PATH="${PATH}:/opt/hpcx/ompi/bin"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/hpcx/ompi/lib"
+WORKDIR /environment
+COPY requirements.txt /environment/
+COPY smartphone_1.jpg /environment/data/smartphone_1.jpg
+RUN apt-get update \
+    && pip install git+https://github.com/facebookresearch/detectron2 \
+    && git clone --depth 1 https://github.com/facebookresearch/Mask2Former.git \
+    && pip install git+https://github.com/cocodataset/panopticapi.git
+WORKDIR /environment/Mask2Former/mask2former/modeling/pixel_decoder/ops
+RUN python setup.py build install
+WORKDIR /environment
+COPY test-env.ipynb /environment/
+RUN pip install -U -r /environment/requirements.txt
+EXPOSE 8888
+ENTRYPOINT ["jupyter", "notebook", "--no-browser","--ip=0.0.0.0","--NotebookApp.token=''","--NotebookApp.password=''"]
