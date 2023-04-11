@@ -1,15 +1,15 @@
-# Pytorch on GPU With Jupyter Notebooks
+# Mask2Former using detectron2 on GPU With Jupyter Notebooks
 
 We are providing a docker image with most of the libraries pre-installed for running a full fledged machine learning environment using [pytorch](https://pytorch.org/) inside docker with GPU support. The docker image uses the base image provided by [nvidia](https://www.nvidia.com/en-in/).
 
-The image is available on [Docker Hub](https://hub.docker.com/r/thegeeksdiary/pytorch-jupyter-gpu).
+The image is available on [Docker Hub](https://hub.docker.com/r/thegeeksdiary/mask2fomer-jupyter-gpu).
 
 ## Running a new container
 
 To spin up a new container using this image - please run the following commands in your terminal.
 
 ```bash
-docker run --gpus all -ti -p 8888:8888 thegeeksdiary/pytorch-jupyter-gpu:latest
+docker run --gpus all -ti -p 8888:8888 thegeeksdiary/mask2former-jupyter-gpu:latest
 ```
 
 Wait for the image to be downloaded and the container to start up. This will take a while depending on your machine and network as the image is approximately 9 GB in size, you might need to increase the allocated storage for the docker desktop on your machine - I am using the [WSL backend](https://docs.docker.com/desktop/windows/wsl/) for docker which means that that I am not affected by the image size but if you are still using Hyper-V as the virtualization backend then [this article](https://www.nakivo.com/blog/increase-disk-size-hyper-v-complete-guide/) might help you. Once the container is running you should see something like this in your terminal.
@@ -51,14 +51,14 @@ Here is a docker-compose file example that you can use to spin up the new enviro
 ```yml
 version: '3.0'
 services:
-  tensorflow:
-    container_name: tensorflow-gpu
-    image: thegeeksdiary/pytorch-jupyter-gpu:latest
+  mask2former:
+    container_name: mask2former-gpu
+    image: thegeeksdiary/mask2former-jupyter-gpu:latest
     restart: unless-stopped
     # uncomment the below to map the notebooks from your machine inside the docker container - please make sure to change the path applicable to you.
-    # volumes:
-    #   - ./notebooks:/environment/notebooks
-    #   - ./data:/environment/data
+    volumes:
+      - ./notebooks:/environment/notebooks
+      - ./data:/environment/data
     deploy:
       resources:
         reservations:
@@ -67,7 +67,7 @@ services:
             device_ids: ['0']
             capabilities: [gpu]
     ports:
-      - '8888:8888'
+      - '8889:8888'
     networks:
       - jupyter
 networks:
