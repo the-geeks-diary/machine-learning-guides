@@ -10,7 +10,7 @@ Use the below commands to clone this repo and run the docker image on your machi
 
 ```bash
 git clone https://github.com/the-geeks-diary/machine-learning-guides.git #If you haven't cloned the repo
-cd ./articles/vscode-with-docker-gpu-images
+cd ./machine-learning-guides/articles/vscode-with-docker-gpu-images
 docker-compose up
 ```
 You should see output similar to what is whown below:
