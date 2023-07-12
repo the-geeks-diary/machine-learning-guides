@@ -26,3 +26,4 @@ wordcloud
 scikit-learn-intelex
 scikit-image
 opencv-contrib-python-headless
+keras-tuner
